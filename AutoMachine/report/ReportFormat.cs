@@ -1,4 +1,4 @@
-﻿namespace AutoMachine.report
+﻿namespace AutoMachine
 {
     public enum ReportFormat
     {

@@ -1,4 +1,4 @@
-﻿namespace AutoMachine.Decorator
+﻿namespace AutoMachine
 {
     public abstract class ProducrDecorator : Product
     {

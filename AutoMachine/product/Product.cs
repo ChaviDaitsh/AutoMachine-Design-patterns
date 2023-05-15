@@ -8,7 +8,7 @@ namespace AutoMachine
         public double Price { get; set; }
         public string ToString()
         {
-            return Name;
+            return $"{Name}  {Price}";
         }
 
     }
