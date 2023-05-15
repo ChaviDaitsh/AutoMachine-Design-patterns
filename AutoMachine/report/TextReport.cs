@@ -8,9 +8,20 @@ namespace AutoMachine.report
 {
     public class TextReport:Report
     {
-        public void writeReport()
+        string reportName = "Report";
+        string reportDay = DateTime.Now.DayOfWeek.ToString();
+
+        public TextReport(TodaysPurchase purchases) : base(purchases)
         {
-            //writing report to text file
+        }
+
+        public override void WriteReport()
+        {
+            using (TextWriter textWriter = new StreamWriter($"\\.\\.\\reports\\{reportName + reportDay }.txt"))
+            {
+                foreach (Purchase s in PurchaseList)
+                    textWriter.WriteLine(s.ToString());
+            }
         }
     }
 }

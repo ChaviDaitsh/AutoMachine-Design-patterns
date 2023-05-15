@@ -8,11 +8,12 @@ namespace AutoMachine.report
 {
     public abstract class Report
     {
-        public List<Purchase> PurchaseList { get; set; } = new List<Purchase>();
+        public List<Purchase> PurchaseList { get; set; }
 
-        public void AddPurchase(Purchase purchase)
+        public Report(TodaysPurchase purchases)
         {
-            PurchaseList.Add(purchase);
+            PurchaseList = purchases.PurchaseList;
         }
+        public abstract void WriteReport();
     }
 }

@@ -6,9 +6,17 @@ using System.Threading.Tasks;
 
 namespace AutoMachine.report
 {
-    public abstract class ReportFactory
+    public class ReportFactory
     {
 
-        public abstract Report MakeReport();
+        public Report MakeReport(ReportFormat reportFormat, TodaysPurchase todaysPurchase) 
+        {
+            switch (reportFormat)
+            {
+                case ReportFormat.TextFormat:
+                    return new TextReport(todaysPurchase);
+            }
+            return null;
+        }
     }
 }
