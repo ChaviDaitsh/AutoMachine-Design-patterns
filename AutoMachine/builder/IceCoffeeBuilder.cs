@@ -3,7 +3,7 @@ namespace AutoMachine
 {
     public class IceCoffeeBuilder:DrinkBuilder
     {
-        IceCoffee IceCoffee = new IceCoffee();
+        IceCoffee IceCoffee ;
         public IceCoffeeBuilder(IceCoffee coffee)
         {
             this.IceCoffee = coffee;
@@ -18,7 +18,7 @@ namespace AutoMachine
             IceCoffee.Description += "and Milk";
         }
 
-        public override Product GetResult()
+        public override IceCoffee GetResult()
         {
             return IceCoffee;
         }

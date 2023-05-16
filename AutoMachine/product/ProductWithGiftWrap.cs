@@ -8,9 +8,9 @@ namespace AutoMachine
         {
             product.Price += 2;
         }
-        public string ToString()
+        public override string ToString()
         {
-            return base.ToString() + "with gift wrap";
+            return Product.ToString() + " with gift wrap";
         }
     }
 }

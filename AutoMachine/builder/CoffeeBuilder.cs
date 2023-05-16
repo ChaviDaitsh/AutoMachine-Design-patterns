@@ -4,7 +4,7 @@ namespace AutoMachine
 {
     public class CoffeeBuilder : DrinkBuilder
     {
-        Coffee coffee = new Coffee();
+        Coffee coffee;
         public CoffeeBuilder(Coffee coffee)
         {
             this.coffee = coffee;
@@ -19,7 +19,7 @@ namespace AutoMachine
             coffee.Description += "and and skimmed Milk";
         }
 
-        public override Product GetResult()
+        public override Coffee GetResult()
         {
             return coffee;
         }

@@ -5,17 +5,17 @@ namespace AutoMachine
     public partial class Mechine : Form
     {
         public Stock Stock { get; set; }
+        public TodaysPurchase TodaysPurchase { get; set; }
         public StateManager StateManager { get; set; }
         public Label ProductsLabel { get; set; }
         public ComboBox ComboPoducts { get; set; }
         public CheckBox BagCheckBox { get; set; }
         public CheckBox GiftWrapCheckBox { get; set; }
-
         public Button MoveToPaymentButton { get; set; }
         public Button BackButton { get; set; }
         public Button PayNowButton { get; set; }
         public Label InsertMoneyLabel { get; set; }
-        public NumericUpDown MoneyReceived { get; set; }
+        public NumericUpDown MoneyReceivedUpDown { get; set; }
         public Label ChangeLabel { get; set; }
         public Label ProductsOutputLabel { get; set; }
 
@@ -26,11 +26,16 @@ namespace AutoMachine
             InitializeComponent();
             
             this.Stock = stock;
-            this.StateManager = new StateManager(SelectionState.GetInstance(), stock);
+            this.TodaysPurchase = new TodaysPurchase();
+            this.StateManager = new StateManager(SelectionState.GetInstance(StateManager), stock);
             List<string> productList = new List<string>();
             for (int i = 0; i < stock.StockDict.Count; i++)
             {
-                productList.Add((ProductType)i+"  "+stock.StockDict[(ProductType)i][0].Price.ToString());
+                if(stock.StockDict[(ProductType)i].Count > 0)
+                {
+                    productList.Add((ProductType)i+"  "+stock.StockDict[(ProductType)i][0].Price.ToString());
+                }
+                
             }
             products.DataSource = productList;
             this.ProductsLabel = productLabel;
@@ -41,7 +46,7 @@ namespace AutoMachine
             this.BackButton = backButton;
             this.PayNowButton = payNow;
             this.InsertMoneyLabel = insertMoneyLabel;
-            this.MoneyReceived = moneyReceived;
+            this.MoneyReceivedUpDown = moneyReceived;
             this.ChangeLabel = changeLabel;
             this.ProductsOutputLabel = productOutput;
             
@@ -59,14 +64,20 @@ namespace AutoMachine
         private void moveToPayment_Click(object sender, EventArgs e)
         {
             StateManager.ProductType = (ProductType)ComboPoducts.SelectedIndex;
-            StateManager.ChangeState(PaymentState.GetInstance());
+            StateManager.ChangeState(PaymentState.GetInstance(StateManager));
             StateManager.ResetButtons(this);
         }
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            StateManager.ChangeState(SelectionState.GetInstance());
+            StateManager.ChangeState(SelectionState.GetInstance(StateManager));
             StateManager.ResetButtons(this);
+        }
+
+        private void payNow_Click(object sender, EventArgs e)
+        {
+            if (Stock.StockDict[StateManager.ProductType] != null) { }
+                StateManager.PerformCurrentStateActions(this);
         }
     }
 }

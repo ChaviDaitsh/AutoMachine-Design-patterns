@@ -4,7 +4,7 @@ namespace AutoMachine
 {
     public class ChocolateMilkBuilder:DrinkBuilder
     {
-        ChocolateMilk chocolateMilk = new ChocolateMilk();
+        ChocolateMilk chocolateMilk;
         public ChocolateMilkBuilder(ChocolateMilk chocolateMilk)
         {
             this.chocolateMilk = chocolateMilk;
@@ -19,7 +19,7 @@ namespace AutoMachine
             chocolateMilk.Description += "and skimmed Milk";
         }
 
-        public override Product GetResult()
+        public override ChocolateMilk GetResult()
         {
             return chocolateMilk;
         }

@@ -5,10 +5,16 @@ namespace AutoMachine
     public class Product
     {
         public string Name { get; set; }
-        public double Price { get; set; }
-        public string ToString()
+        public int Price { get; set; }
+        public Product(string name, int price)
         {
-            return $"{Name}  {Price}";
+            Name = name;
+            Price = price;
+        }
+
+        public virtual string ToString()
+        {
+            return $"{Name}  ";
         }
 
     }

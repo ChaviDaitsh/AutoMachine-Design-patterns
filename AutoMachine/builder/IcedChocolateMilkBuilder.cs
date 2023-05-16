@@ -4,7 +4,7 @@ namespace AutoMachine
 {
     public class IcedChocolateMilkBuilder:DrinkBuilder
     {
-        IceChocolateMilk icedchocolateMilk = new IceChocolateMilk();
+        IceChocolateMilk icedchocolateMilk ;
         public IcedChocolateMilkBuilder(IceChocolateMilk icedchocolateMilk)
         {
             this.icedchocolateMilk = icedchocolateMilk;
@@ -19,7 +19,7 @@ namespace AutoMachine
             icedchocolateMilk.Description += "and Milk";
         }
 
-        public override Product GetResult()
+        public override IceChocolateMilk GetResult()
         {
             return icedchocolateMilk;
         }

@@ -78,6 +78,7 @@
             this.payNow.TabIndex = 3;
             this.payNow.Text = "Pay now";
             this.payNow.UseVisualStyleBackColor = true;
+            this.payNow.Click += new System.EventHandler(this.payNow_Click);
             // 
             // moneyReceived
             // 
@@ -107,7 +108,7 @@
             // productOutput
             // 
             this.productOutput.AutoSize = true;
-            this.productOutput.Location = new System.Drawing.Point(637, 108);
+            this.productOutput.Location = new System.Drawing.Point(175, 333);
             this.productOutput.Name = "productOutput";
             this.productOutput.Size = new System.Drawing.Size(0, 15);
             this.productOutput.TabIndex = 7;
@@ -142,7 +143,7 @@
             this.giftWrapCheckBox.Text = "Gift wrap +2$";
             this.giftWrapCheckBox.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // Mechine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -158,7 +159,7 @@
             this.Controls.Add(this.moveToPayment);
             this.Controls.Add(this.productLabel);
             this.Controls.Add(this.products);
-            this.Name = "Form1";
+            this.Name = "Mechine";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.moneyReceived)).EndInit();
             this.ResumeLayout(false);
