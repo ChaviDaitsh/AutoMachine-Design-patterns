@@ -18,34 +18,24 @@ namespace AutoMachine
             }
             return _instance;
         }
-        public override void PerformCurrentStateActions(Mechine form)
+        public override void PerformCurrentStateActions(Mechine mechine)
         {
-            List<string> productList = new List<string>();
-            for (int i = 0; i < StateManager.Stock.StockDict.Count; i++)
-            {
-                if (StateManager.Stock.StockDict[(ProductType)i].Count > 0)
-                {
-                    productList.Add((ProductType)i + "  " + StateManager.Stock.StockDict[(ProductType)i][0].Price.ToString());
-                }
-
-            }
-            form.ComboPoducts.DataSource = productList;
-            ResetButtons(form);
+            ResetButtons(mechine);
         }
 
-        public override void ResetButtons(Mechine form)
+        public override void ResetButtons(Mechine mechine)
         {
-            form.ProductsLabel.Show();
-            form.ComboPoducts.Show();
-            form.BagCheckBox.Show();
-            form.GiftWrapCheckBox.Show();
-            form.MoveToPaymentButton.Show();
-            form.BackButton.Hide();
-            form.PayNowButton.Hide();
-            form.InsertMoneyLabel.Hide();
-            form.MoneyReceivedUpDown.Hide();
-            form.ChangeLabel.Hide();
-            form.ProductsOutputLabel.Hide();
+            mechine.ProductsLabel.Show();
+            mechine.ComboPoducts.Show();
+            mechine.BagCheckBox.Show();
+            mechine.GiftWrapCheckBox.Show();
+            mechine.MoveToPaymentButton.Show();
+            mechine.BackButton.Hide();
+            mechine.PayNowButton.Hide();
+            mechine.InsertMoneyLabel.Hide();
+            mechine.MoneyReceivedUpDown.Hide();
+            mechine.ChangeLabel.Hide();
+            mechine.ProductsOutputLabel.Hide();
             
         }
     }

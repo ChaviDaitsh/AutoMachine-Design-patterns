@@ -35,6 +35,10 @@ namespace AutoMachine
                 {
                     productList.Add((ProductType)i+"  "+stock.StockDict[(ProductType)i][0].Price.ToString());
                 }
+                else
+                {
+                    productList.Add((ProductType)i + " x  " );
+                }
                 
             }
             products.DataSource = productList;
@@ -49,8 +53,6 @@ namespace AutoMachine
             this.MoneyReceivedUpDown = moneyReceived;
             this.ChangeLabel = changeLabel;
             this.ProductsOutputLabel = productOutput;
-            
-
             this.StateManager.PerformCurrentStateActions(this);
 
 
@@ -58,18 +60,28 @@ namespace AutoMachine
 
         private void products_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void moveToPayment_Click(object sender, EventArgs e)
         {
-            StateManager.ProductType = (ProductType)ComboPoducts.SelectedIndex;
-            StateManager.ChangeState(PaymentState.GetInstance(StateManager));
-            StateManager.ResetButtons(this);
+            if (Stock.StockDict[(ProductType)ComboPoducts.SelectedIndex].Count > 0)
+            {
+                
+                StateManager.ProductType = (ProductType)ComboPoducts.SelectedIndex;
+                StateManager.ChangeState(PaymentState.GetInstance(StateManager));
+                StateManager.ResetButtons(this);
+            }
+            else
+            {
+                ProductsLabel.Text = "This product is out of stock";
+            }
+
         }
 
         private void backButton_Click(object sender, EventArgs e)
         {
+            ProductsLabel.Text = "Please choose a product";
             StateManager.ChangeState(SelectionState.GetInstance(StateManager));
             StateManager.ResetButtons(this);
         }

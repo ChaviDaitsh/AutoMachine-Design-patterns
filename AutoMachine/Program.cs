@@ -31,7 +31,7 @@ namespace AutoMachine
             for (int i = 0; i < 10; i++) { MAndM.Add(new Product("MAndM", 10)); }
 
             List<Product> Pringles = new List<Product>();
-            for (int i = 0; i < 10; i++) { Pringles.Add(new Product("Pringles", 13)); }
+            for (int i = 10; i < 10; i++) { Pringles.Add(new Product("Pringles", 13)); }
 
             Dictionary<ProductType, List<Product>> products = new();
             products.Add(ProductType.Coffee, coffees);
