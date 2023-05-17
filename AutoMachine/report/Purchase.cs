@@ -18,9 +18,9 @@ namespace AutoMachine
             Change = change;
         }
 
-        public string ToString()
+        public override string ToString()
         {
-            return $"DateTime:  {DateTime}  |Product type: {Product}|   Price:  {Price}  |  Money received:  {MoneyReceived}  |  Change:  {Change}";
+            return $"DateTime:  {DateTime}  |  Product type: {Product}  |   Price:  {Price}  |  Money received:  {MoneyReceived}  |  Change:  {Change}";
         }
 
     }

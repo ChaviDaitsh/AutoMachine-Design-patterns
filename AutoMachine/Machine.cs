@@ -1,8 +1,10 @@
+using System.Timers;
+using Timer = System.Timers.Timer;
 
 
 namespace AutoMachine
 {
-    public partial class Mechine : Form
+    public partial class Machine : Form
     {
         public Stock Stock { get; set; }
         public TodaysPurchase TodaysPurchase { get; set; }
@@ -18,30 +20,20 @@ namespace AutoMachine
         public NumericUpDown MoneyReceivedUpDown { get; set; }
         public Label ChangeLabel { get; set; }
         public Label ProductsOutputLabel { get; set; }
+        private readonly Timer m_Timer;
+        public Report ThisDayReport { get; set; }
 
-
-
-        public Mechine(Stock stock)
+        public Machine(Stock stock)
         {
             InitializeComponent();
-            
+            m_Timer = new Timer();
+            m_Timer.Enabled = true;
+            m_Timer.Interval = (10000 * 60);
+            m_Timer.Elapsed += ReportMaker;
+            m_Timer.Start();
             this.Stock = stock;
             this.TodaysPurchase = new TodaysPurchase();
             this.StateManager = new StateManager(SelectionState.GetInstance(StateManager), stock);
-            List<string> productList = new List<string>();
-            for (int i = 0; i < stock.StockDict.Count; i++)
-            {
-                if(stock.StockDict[(ProductType)i].Count > 0)
-                {
-                    productList.Add((ProductType)i+"  "+stock.StockDict[(ProductType)i][0].Price.ToString());
-                }
-                else
-                {
-                    productList.Add((ProductType)i + " x  " );
-                }
-                
-            }
-            products.DataSource = productList;
             this.ProductsLabel = productLabel;
             this.ComboPoducts = products;
             this.BagCheckBox = bagCheckBox;
@@ -54,8 +46,6 @@ namespace AutoMachine
             this.ChangeLabel = changeLabel;
             this.ProductsOutputLabel = productOutput;
             this.StateManager.PerformCurrentStateActions(this);
-
-
         }
 
         private void products_SelectedIndexChanged(object sender, EventArgs e)
@@ -90,6 +80,15 @@ namespace AutoMachine
         {
             if (Stock.StockDict[StateManager.ProductType] != null) { }
                 StateManager.PerformCurrentStateActions(this);
+        }
+        private void ReportMaker(object sender, ElapsedEventArgs args)
+        {
+            if (DateTime.Now.Hour == 0)
+            {
+                ThisDayReport = new TextReport(TodaysPurchase);
+                ThisDayReport.WriteReport();
+                TodaysPurchase = new TodaysPurchase();
+            }
         }
     }
 }

@@ -16,9 +16,9 @@
             }
             return _instance;
         }
-        public override void PerformCurrentStateActions(Mechine mechine)
+        public override void PerformCurrentStateActions(Machine machine)
         {
-            ResetButtons(mechine);
+            ResetButtons(machine);
             Product product = StateManager.Stock.GetItem(StateManager.ProductType);
             DrinkMaker drinkMaker = new DrinkMaker();
                 switch (StateManager.ProductType)
@@ -50,41 +50,41 @@
                     default:
                         break;
                 }
-            if (mechine.GiftWrapCheckBox.Checked)
+            if (machine.GiftWrapCheckBox.Checked)
             {
                 product = new ProductWithGiftWrap(product);
             }
-            if (mechine.BagCheckBox.Checked)
+            if (machine.BagCheckBox.Checked)
             {
                 product = new ProductWithBag(product); 
             }
             
-            mechine.ProductsOutputLabel.Text = product.ToString();
-            Addpurchase(mechine, product);
-            mechine.BackButton.Show();
+            machine.ProductsOutputLabel.Text = product.ToString();
+            Addpurchase(machine, product);
+            machine.BackButton.Show();
             
         }
 
-        public override void ResetButtons(Mechine mechine)
+        public override void ResetButtons(Machine machine)
         {
-            mechine.ProductsLabel.Hide();
-            mechine.ComboPoducts.Hide();
-            mechine.BagCheckBox.Hide();
-            mechine.GiftWrapCheckBox.Hide();
-            mechine.MoveToPaymentButton.Hide();
-            mechine.BackButton.Hide();
-            mechine.PayNowButton.Hide();
-            mechine.InsertMoneyLabel.Hide();
-            mechine.MoneyReceivedUpDown.Hide();
-            mechine.ChangeLabel.Show();
-            mechine.ProductsOutputLabel.Show();
+            machine.ProductsLabel.Hide();
+            machine.ComboPoducts.Hide();
+            machine.BagCheckBox.Hide();
+            machine.GiftWrapCheckBox.Hide();
+            machine.MoveToPaymentButton.Hide();
+            machine.BackButton.Hide();
+            machine.PayNowButton.Hide();
+            machine.InsertMoneyLabel.Hide();
+            machine.MoneyReceivedUpDown.Hide();
+            machine.ChangeLabel.Show();
+            machine.ProductsOutputLabel.Show();
         }
-        private void Addpurchase(Mechine mechine, Product product)
+        private void Addpurchase(Machine machine, Product product)
         {
             Purchase purchase = new Purchase(StateManager.ProductType, DateTime.Now, product.Price,
-                ((int)(mechine.MoneyReceivedUpDown.Value)),
-                ((int)mechine.MoneyReceivedUpDown.Value - product.Price));
-            mechine.TodaysPurchase.AddPurchase(purchase);
+                ((int)(machine.MoneyReceivedUpDown.Value)),
+                ((int)machine.MoneyReceivedUpDown.Value - product.Price));
+            machine.TodaysPurchase.AddPurchase(purchase);
         }
     }
 }

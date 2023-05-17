@@ -40,7 +40,7 @@ namespace AutoMachine
         public override void WriteReportContent(TextWriter sr)
         {
             sr.WriteLine("content:");
-                foreach (Purchase s in PurchaseList)
+                foreach (Purchase s in this.PurchaseList)
                     sr.WriteLine(s.ToString());
             
         }

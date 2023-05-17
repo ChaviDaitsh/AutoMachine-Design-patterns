@@ -14,13 +14,13 @@ namespace AutoMachine
 
             this.Stock = stock;
         }
-        public void ResetButtons(Mechine form) 
+        public void ResetButtons(Machine machine) 
         {
-            this.MachineState.ResetButtons(form);
+            this.MachineState.ResetButtons(machine);
         }
-        public void PerformCurrentStateActions(Mechine form)
+        public void PerformCurrentStateActions(Machine machine)
         {
-            this.MachineState.PerformCurrentStateActions(form);
+            this.MachineState.PerformCurrentStateActions(machine);
         }
         public void ChangeState(MachineState nextState)
         {

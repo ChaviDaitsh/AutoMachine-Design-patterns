@@ -61,8 +61,8 @@ namespace AutoMachine
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Mechine mechine = new Mechine(allStock);
-            Mechine m2 = new Mechine(allStock);
+            Machine mechine = new Machine(allStock);
+            Machine m2 = new Machine(allStock);
 
             Application.Run(mechine);
         }

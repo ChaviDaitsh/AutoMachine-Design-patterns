@@ -16,47 +16,47 @@
             }
             return _instance;
         }
-        public override void PerformCurrentStateActions(Mechine mechine)
+        public override void PerformCurrentStateActions(Machine machine)
         {
             
             int finalPrice = StateManager.Stock.StockDict[StateManager.ProductType][0].Price;
-            if(mechine.GiftWrapCheckBox.Checked)
+            if(machine.GiftWrapCheckBox.Checked)
             {
                 finalPrice += 2;
             }
-            if(mechine.MoneyReceivedUpDown.Value < finalPrice)
+            if(machine.MoneyReceivedUpDown.Value < finalPrice)
             {
-                mechine.InsertMoneyLabel.Text = $"Not enough money please add {finalPrice - mechine.MoneyReceivedUpDown.Value}$";
+                machine.InsertMoneyLabel.Text = $"Not enough money please add {finalPrice - machine.MoneyReceivedUpDown.Value}$";
             }
             else
             {
-                mechine.ChangeLabel.Text = $"Change: {mechine.MoneyReceivedUpDown.Value - finalPrice}";
+                machine.ChangeLabel.Text = $"Change: {machine.MoneyReceivedUpDown.Value - finalPrice}";
                 StateManager.ChangeState(ProcessState.GetInstance(StateManager));
-                StateManager.PerformCurrentStateActions(mechine);
+                StateManager.PerformCurrentStateActions(machine);
             }
 
 
         }
 
-        public override void ResetButtons(Mechine mechine)
+        public override void ResetButtons(Machine machine)
         {
-            mechine.ProductsLabel.Hide();
-            mechine.ComboPoducts.Hide();
-            mechine.BagCheckBox.Hide();
-            mechine.GiftWrapCheckBox.Hide();
-            mechine.MoveToPaymentButton.Hide();
-            mechine.BackButton.Show();
+            machine.ProductsLabel.Hide();
+            machine.ComboPoducts.Hide();
+            machine.BagCheckBox.Hide();
+            machine.GiftWrapCheckBox.Hide();
+            machine.MoveToPaymentButton.Hide();
+            machine.BackButton.Show();
             int finalPrice = StateManager.Stock.StockDict[StateManager.ProductType][0].Price;
-            if (mechine.GiftWrapCheckBox.Checked)
+            if (machine.GiftWrapCheckBox.Checked)
             {
                 finalPrice += 2;
             }
-            mechine.InsertMoneyLabel.Text = $"Please insert {finalPrice}$";
-            mechine.PayNowButton.Show();
-            mechine.InsertMoneyLabel.Show();
-            mechine.MoneyReceivedUpDown.Show();
-            mechine.ChangeLabel.Show();
-            mechine.ProductsOutputLabel.Hide();
+            machine.InsertMoneyLabel.Text = $"Please insert {finalPrice}$";
+            machine.PayNowButton.Show();
+            machine.InsertMoneyLabel.Show();
+            machine.MoneyReceivedUpDown.Show();
+            machine.ChangeLabel.Show();
+            machine.ProductsOutputLabel.Hide();
         }
     }
 }

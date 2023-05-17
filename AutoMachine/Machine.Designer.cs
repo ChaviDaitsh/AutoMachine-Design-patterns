@@ -1,6 +1,6 @@
 ﻿namespace AutoMachine
 {
-    partial class Mechine
+    partial class Machine
     {
         /// <summary>
         ///  Required designer variable.

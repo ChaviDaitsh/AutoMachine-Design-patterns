@@ -4,11 +4,12 @@ namespace AutoMachine
 {
     public class SelectionState : MachineState
     {
+        private static SelectionState _instance;
         private SelectionState(StateManager stateManager)
         {
             StateManager= stateManager;
         }
-        private static SelectionState _instance;
+        
 
         public static SelectionState GetInstance(StateManager stateManager)
         {
@@ -18,24 +19,38 @@ namespace AutoMachine
             }
             return _instance;
         }
-        public override void PerformCurrentStateActions(Mechine mechine)
+        public override void PerformCurrentStateActions(Machine machine)
         {
-            ResetButtons(mechine);
+            ResetButtons(machine);
         }
 
-        public override void ResetButtons(Mechine mechine)
+        public override void ResetButtons(Machine machine)
         {
-            mechine.ProductsLabel.Show();
-            mechine.ComboPoducts.Show();
-            mechine.BagCheckBox.Show();
-            mechine.GiftWrapCheckBox.Show();
-            mechine.MoveToPaymentButton.Show();
-            mechine.BackButton.Hide();
-            mechine.PayNowButton.Hide();
-            mechine.InsertMoneyLabel.Hide();
-            mechine.MoneyReceivedUpDown.Hide();
-            mechine.ChangeLabel.Hide();
-            mechine.ProductsOutputLabel.Hide();
+            machine.ProductsLabel.Show();
+            List<string> productList = new List<string>();
+            for (int i = 0; i < machine.Stock.StockDict.Count; i++)
+            {
+                if (machine.Stock.StockDict[(ProductType)i].Count > 0)
+                {
+                    productList.Add((ProductType)i + "  " + machine.Stock.StockDict[(ProductType)i][0].Price.ToString());
+                }
+                else
+                {
+                    productList.Add((ProductType)i + " out of stock  ");
+                }
+
+            }
+            machine.ComboPoducts.DataSource = productList;
+            machine.ComboPoducts.Show();
+            machine.BagCheckBox.Show();
+            machine.GiftWrapCheckBox.Show();
+            machine.MoveToPaymentButton.Show();
+            machine.BackButton.Hide();
+            machine.PayNowButton.Hide();
+            machine.InsertMoneyLabel.Hide();
+            machine.MoneyReceivedUpDown.Hide();
+            machine.ChangeLabel.Hide();
+            machine.ProductsOutputLabel.Hide();
             
         }
     }
