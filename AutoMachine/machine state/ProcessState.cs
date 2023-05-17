@@ -26,25 +26,25 @@
                     case ProductType.Coffee:
                         Coffee coffee = new Coffee(product);   
                         CoffeeBuilder coffeeBuilder = new CoffeeBuilder(coffee);
-                        drinkMaker.MakeCoffee(coffeeBuilder);
+                        drinkMaker.MakeDrink(coffeeBuilder);
                         product = coffeeBuilder.GetResult();
                         break;
                     case ProductType.IceCoffee:
                         IceCoffee iceCoffee = new IceCoffee(product);
                         IceCoffeeBuilder icecoffeeBuilder = new IceCoffeeBuilder(iceCoffee);
-                        drinkMaker.MakeIceCoffee(icecoffeeBuilder);
+                        drinkMaker.MakeDrink(icecoffeeBuilder);
                         product = icecoffeeBuilder.GetResult();
                         break;
                     case ProductType.ChocolateMilk:
                         ChocolateMilk ChocolateMilk = new ChocolateMilk(product);
                         ChocolateMilkBuilder ChocolateMilkBuilder = new ChocolateMilkBuilder(ChocolateMilk);
-                        drinkMaker.MakeChocolateMilk(ChocolateMilkBuilder);
+                        drinkMaker.MakeDrink(ChocolateMilkBuilder);
                         product = ChocolateMilkBuilder.GetResult();
                         break;
                     case ProductType.IceChocolateMilk:
                         IceChocolateMilk iceChocolateMilk = new IceChocolateMilk(product);
                         IcedChocolateMilkBuilder icedChocolateMilkBuilder = new IcedChocolateMilkBuilder(iceChocolateMilk);
-                        drinkMaker.MakeIcedChocolateMilk(icedChocolateMilkBuilder);
+                        drinkMaker.MakeDrink(icedChocolateMilkBuilder);
                         product = icedChocolateMilkBuilder.GetResult();
                         break;
                     default:
